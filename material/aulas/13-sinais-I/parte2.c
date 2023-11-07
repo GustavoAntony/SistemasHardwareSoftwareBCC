@@ -10,8 +10,8 @@ int main() {
     filho = fork();
     if (filho == 0) {
         printf("Meu pid: %d\n", getpid());
-        int i = 1/0;
-        printf("Divisão por zero!\n");
+        while (1){
+        }
         return 0;
     }
     int ws;

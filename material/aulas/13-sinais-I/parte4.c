@@ -3,21 +3,24 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <string.h>
+#include <signal.h>
 
 int main() {
     pid_t filho;
-
     filho = fork();
     if (filho == 0) {
         printf("Meu pid: %d\n", getpid());
-        int i = 1/0;
-        printf("Divisão por zero!\n");
-        return 0;
+        while (1);
     }
     int ws;
-    // int x= wait(&ws);
-    printf("%d\n",wait(&ws));
 
+    sleep(10);
+    int wait_return = waitpid(filho, &ws, WNOHANG);
+    kill(filho,SIGKILL);
+
+    if (wait_return == 0)
+
+    wait(&ws);
     printf("EXITED %d \n"
     "SIGNALED %d \n"
     "TERMSIG %d \n"
